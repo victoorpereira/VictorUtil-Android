@@ -1,16 +1,28 @@
 package br.com.victor.victorutils
 
 fun Double.toCurrency():String{
-    val value = this.toFloat()
-    return "R$ ${String.format("%.2f", value)}"
+    try {
+        val value = this.toFloat()
+        return "R$ ${String.format("%.2f", value)}"
+    } catch (e: Exception) {
+        return ""
+    }
 }
 
 fun Float.toCurrency():String{
-    val value = this.toFloat()
-    return "R$ ${String.format("%.2f", value)}"
+    try {
+        val value = this.toFloat()
+        return "R$ ${String.format("%.2f", value)}"
+    } catch (e: Exception) {
+        return ""
+    }
 }
 
 fun Int.toCurrency():String{
-    val value = this.toFloat()
-    return "R$ ${String.format("%.2f", value)}"
+    try {
+        val value = this.toFloat()
+        return "R$ ${String.format("%.2f", value)}"
+    } catch (e: Exception) {
+        return ""
+    }
 }

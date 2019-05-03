@@ -2,6 +2,8 @@ package br.com.victor.victorutilsexample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import br.com.victor.victorutils.*
 import br.com.victor.victorutilsexample.model.ExampleData
 import kotlinx.android.synthetic.main.activity_main.*
@@ -378,51 +380,61 @@ class MainActivity : AppCompatActivity() {
      *
      * @param Float.toCurrency()
      * @return String formatted
+     * @exception Empty string
      *
      * @param Double.toCurrency()
      * @return String formatted
+     * @exception Empty string
      *
      * @param Int.toCurrency()
      * @return String formatted
+     * @exception Empty string
      *
      * @param ConstraintLayout.slideAnimation()
      * @param ConstraintLayout.landingAnimation()
      * @param ConstraintLayout.FadeInAnimation()
-     * @param ConstraintLayout.FadeOutAnimation()
+     * @param ConstraintLayout.FadeOutAnimation(visibility:int)
      *
      * @param TextView.slideAnimation()
      * @param TextView.landingAnimation()
      * @param TextView.FadeInAnimation()
-     * @param TextView.FadeOutAnimation()
+     * @param TextView.FadeOutAnimation(visibility:int)
      *
      * @param EditText.slideAnimation()
      * @param EditText.landingAnimation()
      * @param EditText.FadeInAnimation()
-     * @param EditText.FadeOutAnimation()
+     * @param EditText.FadeOutAnimation(visibility:int)
      *
      * @param Button.slideAnimation()
      * @param Button.landingAnimation()
      * @param Button.FadeInAnimation()
-     * @param Button.FadeOutAnimation()
+     * @param Button.FadeOutAnimation(visibility:int)
      *
      */
     private fun setToCurrency(valueFloat: Float, valueDouble: Double, valueInt: Int) {
         floatBtn.setOnClickListener {
-            valueFloatToFormatTxtView.text = valueFloat.toCurrency()
-            floatBtn.slideAnimation()
-            valueFloatToFormatTxtView.slideAnimation()
+            valueFloatToFormatTxtView.fadeOutAnimation(View.INVISIBLE)
+            Handler().postDelayed({
+                valueFloatToFormatTxtView.text = valueFloat.toCurrency()
+                valueFloatToFormatTxtView.slideAnimation()
+            },700)
         }
 
         doubleBtn.setOnClickListener {
-            valueDoubleToFormatTxtView.text = valueDouble.toCurrency()
-            doubleBtn.landingAnimation()
-            valueDoubleToFormatTxtView.landingAnimation()
+            valueDoubleToFormatTxtView.fadeOutAnimation(View.INVISIBLE)
+            Handler().postDelayed({
+                valueDoubleToFormatTxtView.text = valueDouble.toCurrency()
+                valueDoubleToFormatTxtView.landingAnimation()
+            },700)
         }
 
         intBtn.setOnClickListener {
-            valueIntToFormatTxtView.text = valueInt.toCurrency()
-            intBtn.fadeInAnimation()
-            valueIntToFormatTxtView.fadeInAnimation()
+            valueIntToFormatTxtView.fadeOutAnimation(View.INVISIBLE)
+            Handler().postDelayed({
+                valueIntToFormatTxtView.text = valueInt.toCurrency()
+                valueIntToFormatTxtView.fadeInAnimation()
+            },700)
+
         }
     }
 }

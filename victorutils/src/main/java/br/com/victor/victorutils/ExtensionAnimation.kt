@@ -2,6 +2,7 @@ package br.com.victor.victorutils
 
 import android.opengl.Visibility
 import android.support.constraint.ConstraintLayout
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -84,6 +85,7 @@ fun TextView.landingAnimation(){
                 }
                 .playOn(txtView)
     } catch (e: Exception) {
+
     }
 }
 
@@ -136,6 +138,7 @@ fun TextView.fadeInAnimation(){
                 }
                 .playOn(txtView)
     } catch (e: Exception) {
+
     }
 }
 
@@ -169,7 +172,7 @@ fun ConstraintLayout.fadeOutAnimation(visibility: Int){
     try {
         val cl = this
         YoYo.with(Techniques.FadeOut)
-                .duration(700)
+                .duration(400)
                 .onEnd {
                     cl.visibility = visibility
                 }
@@ -182,7 +185,7 @@ fun TextView.fadeOutAnimation(visibility: Int){
     try {
         val txtView = this
         YoYo.with(Techniques.FadeOut)
-                .duration(700)
+                .duration(400)
                 .onEnd {
                     txtView.visibility = visibility
                 }
@@ -195,7 +198,7 @@ fun EditText.fadeOutAnimation(visibility: Int){
     try {
         val edtTxt = this
         YoYo.with(Techniques.FadeOut)
-                .duration(700)
+                .duration(400)
                 .onEnd {
                     edtTxt.visibility = visibility
                 }
@@ -208,7 +211,7 @@ fun Button.fadeOutAnimation(visibility: Int){
     try {
         val btn = this
         YoYo.with(Techniques.FadeOut)
-                .duration(700)
+                .duration(400)
                 .onEnd {
                     btn.visibility = visibility
                 }

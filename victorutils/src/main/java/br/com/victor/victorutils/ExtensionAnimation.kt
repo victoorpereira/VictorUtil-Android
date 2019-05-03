@@ -1,5 +1,6 @@
 package br.com.victor.victorutils
 
+import android.opengl.Visibility
 import android.support.constraint.ConstraintLayout
 import android.view.View
 import android.widget.Button
@@ -164,52 +165,52 @@ fun Button.fadeInAnimation(){
     }
 }
 
-fun ConstraintLayout.fadeOutAnimation(){
+fun ConstraintLayout.fadeOutAnimation(visibility: Int){
     try {
         val cl = this
         YoYo.with(Techniques.FadeOut)
                 .duration(700)
-                .onStart {
-                    cl.visibility = View.VISIBLE
+                .onEnd {
+                    cl.visibility = visibility
                 }
                 .playOn(cl)
     } catch (e: Exception) {
     }
 }
 
-fun TextView.fadeOutAnimation(){
+fun TextView.fadeOutAnimation(visibility: Int){
     try {
         val txtView = this
         YoYo.with(Techniques.FadeOut)
                 .duration(700)
-                .onStart {
-                    txtView.visibility = View.VISIBLE
+                .onEnd {
+                    txtView.visibility = visibility
                 }
                 .playOn(txtView)
     } catch (e: Exception) {
     }
 }
 
-fun EditText.fadeOutAnimation(){
+fun EditText.fadeOutAnimation(visibility: Int){
     try {
         val edtTxt = this
         YoYo.with(Techniques.FadeOut)
                 .duration(700)
-                .onStart {
-                    edtTxt.visibility = View.VISIBLE
+                .onEnd {
+                    edtTxt.visibility = visibility
                 }
                 .playOn(edtTxt)
     } catch (e: Exception) {
     }
 }
 
-fun Button.fadeOutAnimation(){
+fun Button.fadeOutAnimation(visibility: Int){
     try {
         val btn = this
         YoYo.with(Techniques.FadeOut)
                 .duration(700)
-                .onStart {
-                    btn.visibility = View.VISIBLE
+                .onEnd {
+                    btn.visibility = visibility
                 }
                 .playOn(btn)
     } catch (e: Exception) {

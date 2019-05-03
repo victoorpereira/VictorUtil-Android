@@ -18,8 +18,7 @@ fun ISOFORMAT(date:String, dateFormat: UtilsDateFormats) : String {
     try {
         val toISO = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
         val isoDate = toISO.parse(date)
-        val formatTo = SimpleDateFormat(dateFormat.dateFormat)
-        formatTo.timeZone = Calendar.getInstance().timeZone
+        val formatTo = SimpleDateFormat(dateFormat.dateFormat, Locale.getDefault())
 
         return formatTo.format(isoDate)
     } catch (e: Exception) {
@@ -31,8 +30,7 @@ fun ISOFORMAT(date:String, dateFormat: String): String {
     try {
         val toISO = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
         val isoDate = toISO.parse(date)
-        val formatTo = SimpleDateFormat(dateFormat)
-        formatTo.timeZone = Calendar.getInstance().timeZone
+        val formatTo = SimpleDateFormat(dateFormat, Locale.getDefault())
 
         return formatTo.format(isoDate)
     } catch (e: Exception) {
@@ -42,8 +40,7 @@ fun ISOFORMAT(date:String, dateFormat: String): String {
 
 fun ISOFORMATtoDATE(date:String): Date? {
     try {
-        val toISO = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
-        toISO.timeZone = Calendar.getInstance().timeZone
+        val toISO = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())
         val isoDate = toISO.parse(date)
 
         return isoDate

@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.EditText
 import java.text.Normalizer
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -23,13 +24,9 @@ fun EditText.cleanError(){
     })
 }
 
-fun String.removeCaracteresEspeciais(): String {
-    return Normalizer.normalize(this, Normalizer.Form.NFD).replace("[^a-zA-Z]", "")
-}
-
 fun String.isPhone(): Boolean {
     var phone = this
-    phone = phone.removeCaracteresEspeciais()
+    phone = unmask(phone)
 
     return phone.length == 10 || phone.length == 11
 }
@@ -37,7 +34,7 @@ fun String.isPhone(): Boolean {
 fun String.isCPF(): Boolean {
     var CPF = this
 
-    CPF = CPF.removeCaracteresEspeciais()
+    CPF = unmask(CPF)
 
     // considera-se erro CPF's formados por uma sequencia de numeros iguais
     if (CPF == "00000000000" || CPF == "11111111111" || CPF == "22222222222" || CPF == "33333333333" || CPF == "44444444444" || CPF == "55555555555" || CPF == "66666666666" || CPF == "77777777777" || CPF == "88888888888" || CPF == "99999999999" || CPF.length != 11)
@@ -104,7 +101,7 @@ fun String.isCPF(): Boolean {
 fun String.isCNPJ(): Boolean {
     var CNPJ = this
 
-    CNPJ = CNPJ.removeCaracteresEspeciais()
+    CNPJ = unmask(CNPJ)
 
     // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
     if (CNPJ == "00000000000000" || CNPJ == "11111111111111" || CNPJ == "22222222222222" || CNPJ == "33333333333333" || CNPJ == "44444444444444" || CNPJ == "55555555555555" || CNPJ == "66666666666666" || CNPJ == "77777777777777" || CNPJ == "88888888888888" || CNPJ == "99999999999999" || CNPJ.length != 14)
@@ -173,4 +170,23 @@ fun String.isCNPJ(): Boolean {
 
 fun String.isEmail(): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
+
+fun String.isBirthdate(): Boolean {
+    try {
+        var date = this
+        date = unmask(date)
+
+        if(date.length == 8) {
+            val toISO = SimpleDateFormat("ddMMyyyy", Locale.getDefault())
+            val isoDate = toISO.parse(date)
+
+            return isoDate.time < Calendar.getInstance().timeInMillis
+        }else{
+            return false
+        }
+    } catch (e: Exception) {
+        return false
+    }
+
 }

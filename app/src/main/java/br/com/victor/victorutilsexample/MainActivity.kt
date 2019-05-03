@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         //Set system manipulation
         setSystem()
 
+        //Set masks
+        setMasks()
+
         //Set validators
         validateBtn.setOnClickListener {
             setValidators()
@@ -38,6 +41,18 @@ class MainActivity : AppCompatActivity() {
         eraseBtn.setOnClickListener {
             deleteLocalData()
         }
+
+        //Set open maps
+        setMaps()
+
+        //Set toCurrency
+        val valueFloat:Float = 123.123f
+        val valueDouble:Double = 321.321
+        val valueInt:Int = 213
+        setToCurrency(valueFloat, valueDouble, valueInt)
+        valueFloatToFormatTxtView.setText(valueFloat.toString())
+        valueDoubleToFormatTxtView.setText(valueDouble.toString())
+        valueIntToFormatTxtView.setText(valueInt.toString())
     }
 
     /**
@@ -131,7 +146,7 @@ class MainActivity : AppCompatActivity() {
      * @exception Empty string
      *
      * @param ISOFORMAT(date:String, dateFormat:String)
-     * @return Formated String
+     * @return formatted String
      * @exception Empty string
      *
      * @param ISOFORMATtoDATE(date:String)
@@ -185,6 +200,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Set mask
+     *
+     * ENUM MASK FORMAT:
+     * @param birthdate("##/##/####")
+     * @param cpf("###.###.###-##")
+     * @param creditCardExpiration("##/####")
+     * @param creditCardNumber("#### #### #### ####")
+     * @param cep("#####-###")
+     * @param phone("(##)#####-####")
+     * @param cnpj("##.###.###/####-##")
+     * @param rg("###.###.###")
+     * @param hour("##:##")
+     *
+     * or you can use a custom format by using string instead
+     *
+     * @param EditText.addTextChangedListener(maskInsert(mask:UtilsMaskFormat, EditText)
+     * @return Masked field
+     *
+     * @param EditText.addTextChangedListener(maskInsert(mask:String, EditText)
+     * @return Masked field
+     */
+    private fun setMasks() {
+        telefoneInputEdit.addTextChangedListener(maskInsert(UtilsMaskFormats.phone, telefoneInputEdit))
+        cpfInputEdit.addTextChangedListener(maskInsert(UtilsMaskFormats.cpf, cpfInputEdit))
+        cnpjInputEdit.addTextChangedListener(maskInsert(UtilsMaskFormats.cnpj, cnpjInputEdit))
+        birthDateInputEdit.addTextChangedListener(maskInsert(UtilsMaskFormats.birthdate, birthDateInputEdit))
+    }
+
+    /**
      * Set validator
      *
      * @param EditText.cleanError()
@@ -201,6 +245,9 @@ class MainActivity : AppCompatActivity() {
      * @param String.isEmail()
      * @return Boolean
      *
+     * @param String.isBirthdate()
+     * @return Boolean
+     *
      * @param LocalDBimplement.save
      * To save data in local storage
      */
@@ -212,6 +259,7 @@ class MainActivity : AppCompatActivity() {
         cpfInputEdit.cleanError()
         cnpjInputEdit.cleanError()
         emailInputEdit.cleanError()
+        birthDateInputEdit.cleanError()
 
         if(!telefoneInputEdit.text.toString().trim().isPhone()){
             telefoneInputEdit.error = "Invalid phone"
@@ -233,12 +281,18 @@ class MainActivity : AppCompatActivity() {
             error = true
         }
 
+        if(!birthDateInputEdit.text.toString().trim().isBirthdate()){
+            birthDateInputEdit.error = "Invalid birthdate"
+            error = true
+        }
+
         if(!error){
             val exampleData = ExampleData()
             exampleData.telefone = telefoneInputEdit.text.toString().trim()
             exampleData.cpf = cpfInputEdit.text.toString().trim()
             exampleData.cnpj = cnpjInputEdit.text.toString().trim()
             exampleData.email = emailInputEdit.text.toString().trim()
+            exampleData.birthdate = birthDateInputEdit.text.toString().trim()
 
             LocalDbImplement<ExampleData>(this@MainActivity).save(exampleData)
             toast("Saved local data!")
@@ -258,6 +312,7 @@ class MainActivity : AppCompatActivity() {
                 cpfInputEdit.setText(it?.cpf)
                 cnpjInputEdit.setText(it?.cnpj)
                 emailInputEdit.setText(it?.email)
+                birthDateInputEdit.setText(it?.birthdate)
 
                 toast("Fill with local data!")
             }
@@ -283,6 +338,91 @@ class MainActivity : AppCompatActivity() {
             emailInputEdit.setText("")
         }else{
             toast("There's nothing to be deleted!")
+        }
+    }
+
+    /**
+     * Set open maps
+     *
+     * @param openMaps(latitude:String, longitude:String)
+     * @param openWaze(latitude:String, longitude:String)
+     * @param openGoogleMaps(latitude:String, longitude:String)
+     * @param openGoogleMaps(latitude:String, longitude:String, query:String)
+     * @param openStreetView(latitude:String, longitude:String)
+     *
+     */
+    private fun setMaps() {
+        openMapsChoiceBtn.setOnClickListener {
+            openMaps("-25.4341219", "-49.284506")
+        }
+
+        openWazeBtn.setOnClickListener {
+            openWaze("-25.4341219", "-49.284506")
+        }
+
+        openMapsBtn.setOnClickListener {
+            openGoogleMaps("-25.4341219", "-49.284506")
+        }
+
+        openMapsQueryBtn.setOnClickListener {
+            openGoogleMaps("-25.4341219", "-49.284506", "DevMaker Mobile Apps")
+        }
+
+        openStreetView.setOnClickListener {
+            openGoogleStreetView("-25.433973", "-49.282382")
+        }
+    }
+
+    /**
+     * Set currency and animations
+     *
+     * @param Float.toCurrency()
+     * @return String formatted
+     *
+     * @param Double.toCurrency()
+     * @return String formatted
+     *
+     * @param Int.toCurrency()
+     * @return String formatted
+     *
+     * @param ConstraintLayout.slideAnimation()
+     * @param ConstraintLayout.landingAnimation()
+     * @param ConstraintLayout.FadeInAnimation()
+     * @param ConstraintLayout.FadeOutAnimation()
+     *
+     * @param TextView.slideAnimation()
+     * @param TextView.landingAnimation()
+     * @param TextView.FadeInAnimation()
+     * @param TextView.FadeOutAnimation()
+     *
+     * @param EditText.slideAnimation()
+     * @param EditText.landingAnimation()
+     * @param EditText.FadeInAnimation()
+     * @param EditText.FadeOutAnimation()
+     *
+     * @param Button.slideAnimation()
+     * @param Button.landingAnimation()
+     * @param Button.FadeInAnimation()
+     * @param Button.FadeOutAnimation()
+     *
+     */
+    private fun setToCurrency(valueFloat: Float, valueDouble: Double, valueInt: Int) {
+        floatBtn.setOnClickListener {
+            valueFloatToFormatTxtView.text = valueFloat.toCurrency()
+            floatBtn.slideAnimation()
+            valueFloatToFormatTxtView.slideAnimation()
+        }
+
+        doubleBtn.setOnClickListener {
+            valueDoubleToFormatTxtView.text = valueDouble.toCurrency()
+            doubleBtn.landingAnimation()
+            valueDoubleToFormatTxtView.landingAnimation()
+        }
+
+        intBtn.setOnClickListener {
+            valueIntToFormatTxtView.text = valueInt.toCurrency()
+            intBtn.fadeInAnimation()
+            valueIntToFormatTxtView.fadeInAnimation()
         }
     }
 }

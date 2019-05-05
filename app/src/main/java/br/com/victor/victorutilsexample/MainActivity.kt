@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         valueIntToFormatTxtView.setText(valueInt.toString())
     }
 
+    //region Toast
     /**
      * Set toast examples
      *
@@ -81,7 +82,9 @@ class MainActivity : AppCompatActivity() {
             longToast(987654321)
         }
     }
+    //endregion
 
+    //region Dialog
     /**
      * Set dialog examples
      *
@@ -128,7 +131,9 @@ class MainActivity : AppCompatActivity() {
             showDialog("Dialog Title", errors)
         }
     }
+    //endregion
 
+    //region Date
     /**
      * Set ISO date format examples
      *
@@ -191,7 +196,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    //endregion
 
+    //region Get Hash
     /**
      * Set get hash
      */
@@ -200,7 +207,9 @@ class MainActivity : AppCompatActivity() {
             getHash()
         }
     }
+    //endregion
 
+    //region Mask
     /**
      * Set mask
      *
@@ -229,7 +238,9 @@ class MainActivity : AppCompatActivity() {
         cnpjInputEdit.addTextChangedListener(maskInsert(UtilsMaskFormats.cnpj, cnpjInputEdit))
         birthDateInputEdit.addTextChangedListener(maskInsert(UtilsMaskFormats.birthdate, birthDateInputEdit))
     }
+    //endregion
 
+    //region Validator
     /**
      * Set validator
      *
@@ -300,7 +311,9 @@ class MainActivity : AppCompatActivity() {
             toast("Saved local data!")
         }
     }
+    //endregion
 
+    //region Get data Local DB
     /**
      * Get data from local database
      *
@@ -320,7 +333,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    //endregion
 
+    //region Erase data Local DB
     /**
      * Erase data from local database
      *
@@ -342,7 +357,9 @@ class MainActivity : AppCompatActivity() {
             toast("There's nothing to be deleted!")
         }
     }
+    //endregion
 
+    //region Maps
     /**
      * Set open maps
      *
@@ -374,7 +391,9 @@ class MainActivity : AppCompatActivity() {
             openGoogleStreetView("-25.433973", "-49.282382")
         }
     }
+    //endregion
 
+    //region Currency and animations
     /**
      * Set currency and animations
      *
@@ -416,7 +435,7 @@ class MainActivity : AppCompatActivity() {
             valueFloatToFormatTxtView.fadeOutAnimation(View.INVISIBLE)
             Handler().postDelayed({
                 valueFloatToFormatTxtView.text = valueFloat.toCurrency()
-                valueFloatToFormatTxtView.slideAnimation()
+                valueFloatToFormatTxtView.slideLeftAnimation()
             },700)
         }
 
@@ -437,4 +456,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+    //endregion
 }

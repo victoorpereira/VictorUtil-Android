@@ -1,8 +1,6 @@
 package br.com.victor.victorutils
 
-import android.opengl.Visibility
 import android.support.constraint.ConstraintLayout
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,11 +8,12 @@ import android.widget.TextView
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 
-fun ConstraintLayout.slideAnimation(){
+//region Slide Left
+fun ConstraintLayout.slideLeftAnimation(duration:Long = 700){
     try {
         val cl = this
         YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
+                .duration(duration)
                 .onStart {
                     cl.visibility = View.VISIBLE
                 }
@@ -23,11 +22,11 @@ fun ConstraintLayout.slideAnimation(){
     }
 }
 
-fun TextView.slideAnimation(){
+fun TextView.slideLeftAnimation(duration:Long = 700){
     try {
         val txtView = this
         YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
+                .duration(duration)
                 .onStart {
                     txtView.visibility = View.VISIBLE
                 }
@@ -36,11 +35,11 @@ fun TextView.slideAnimation(){
     }
 }
 
-fun EditText.slideAnimation(){
+fun EditText.slideLeftAnimation(duration:Long = 700){
     try {
         val edtTxt = this
         YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
+                .duration(duration)
                 .onStart {
                     edtTxt.visibility = View.VISIBLE
                 }
@@ -49,11 +48,11 @@ fun EditText.slideAnimation(){
     }
 }
 
-fun Button.slideAnimation(){
+fun Button.slideLeftAnimation(duration:Long = 700){
     try {
         val btn = this
         YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
+                .duration(duration)
                 .onStart {
                     btn.visibility = View.VISIBLE
                 }
@@ -61,12 +60,14 @@ fun Button.slideAnimation(){
     } catch (e: Exception) {
     }
 }
+//endregion
 
-fun ConstraintLayout.landingAnimation(){
+//region Slide Right
+fun ConstraintLayout.slideRightAnimation(duration:Long = 700){
     try {
         val cl = this
-        YoYo.with(Techniques.Landing)
-                .duration(700)
+        YoYo.with(Techniques.SlideInRight)
+                .duration(duration)
                 .onStart {
                     cl.visibility = View.VISIBLE
                 }
@@ -75,25 +76,24 @@ fun ConstraintLayout.landingAnimation(){
     }
 }
 
-fun TextView.landingAnimation(){
+fun TextView.slideRightAnimation(duration:Long = 700){
     try {
         val txtView = this
-        YoYo.with(Techniques.Landing)
-                .duration(700)
+        YoYo.with(Techniques.SlideInRight)
+                .duration(duration)
                 .onStart {
                     txtView.visibility = View.VISIBLE
                 }
                 .playOn(txtView)
     } catch (e: Exception) {
-
     }
 }
 
-fun EditText.landingAnimation(){
+fun EditText.slideRightAnimation(duration:Long = 700){
     try {
         val edtTxt = this
-        YoYo.with(Techniques.Landing)
-                .duration(700)
+        YoYo.with(Techniques.SlideInRight)
+                .duration(duration)
                 .onStart {
                     edtTxt.visibility = View.VISIBLE
                 }
@@ -102,11 +102,11 @@ fun EditText.landingAnimation(){
     }
 }
 
-fun Button.landingAnimation(){
+fun Button.slideRightAnimation(duration:Long = 700){
     try {
         val btn = this
-        YoYo.with(Techniques.Landing)
-                .duration(700)
+        YoYo.with(Techniques.SlideInRight)
+                .duration(duration)
                 .onStart {
                     btn.visibility = View.VISIBLE
                 }
@@ -114,12 +114,14 @@ fun Button.landingAnimation(){
     } catch (e: Exception) {
     }
 }
+//endregion
 
-fun ConstraintLayout.fadeInAnimation(){
+//region Landing
+fun ConstraintLayout.landingAnimation(duration:Long = 700){
     try {
         val cl = this
-        YoYo.with(Techniques.FadeIn)
-                .duration(700)
+        YoYo.with(Techniques.Landing)
+                .duration(duration)
                 .onStart {
                     cl.visibility = View.VISIBLE
                 }
@@ -128,11 +130,11 @@ fun ConstraintLayout.fadeInAnimation(){
     }
 }
 
-fun TextView.fadeInAnimation(){
+fun TextView.landingAnimation(duration:Long = 700){
     try {
         val txtView = this
-        YoYo.with(Techniques.FadeIn)
-                .duration(700)
+        YoYo.with(Techniques.Landing)
+                .duration(duration)
                 .onStart {
                     txtView.visibility = View.VISIBLE
                 }
@@ -142,11 +144,11 @@ fun TextView.fadeInAnimation(){
     }
 }
 
-fun EditText.fadeInAnimation(){
+fun EditText.landingAnimation(duration:Long = 700){
     try {
         val edtTxt = this
-        YoYo.with(Techniques.FadeIn)
-                .duration(700)
+        YoYo.with(Techniques.Landing)
+                .duration(duration)
                 .onStart {
                     edtTxt.visibility = View.VISIBLE
                 }
@@ -155,11 +157,11 @@ fun EditText.fadeInAnimation(){
     }
 }
 
-fun Button.fadeInAnimation(){
+fun Button.landingAnimation(duration:Long = 700){
     try {
         val btn = this
-        YoYo.with(Techniques.FadeIn)
-                .duration(700)
+        YoYo.with(Techniques.Landing)
+                .duration(duration)
                 .onStart {
                     btn.visibility = View.VISIBLE
                 }
@@ -167,12 +169,69 @@ fun Button.fadeInAnimation(){
     } catch (e: Exception) {
     }
 }
+//endregion
 
-fun ConstraintLayout.fadeOutAnimation(visibility: Int){
+//region FadeIn
+fun ConstraintLayout.fadeInAnimation(duration:Long = 700){
+    try {
+        val cl = this
+        YoYo.with(Techniques.FadeIn)
+                .duration(duration)
+                .onStart {
+                    cl.visibility = View.VISIBLE
+                }
+                .playOn(cl)
+    } catch (e: Exception) {
+    }
+}
+
+fun TextView.fadeInAnimation(duration:Long = 700){
+    try {
+        val txtView = this
+        YoYo.with(Techniques.FadeIn)
+                .duration(duration)
+                .onStart {
+                    txtView.visibility = View.VISIBLE
+                }
+                .playOn(txtView)
+    } catch (e: Exception) {
+
+    }
+}
+
+fun EditText.fadeInAnimation(duration:Long = 700){
+    try {
+        val edtTxt = this
+        YoYo.with(Techniques.FadeIn)
+                .duration(duration)
+                .onStart {
+                    edtTxt.visibility = View.VISIBLE
+                }
+                .playOn(edtTxt)
+    } catch (e: Exception) {
+    }
+}
+
+fun Button.fadeInAnimation(duration:Long = 700){
+    try {
+        val btn = this
+        YoYo.with(Techniques.FadeIn)
+                .duration(duration)
+                .onStart {
+                    btn.visibility = View.VISIBLE
+                }
+                .playOn(btn)
+    } catch (e: Exception) {
+    }
+}
+//endregion
+
+//region FadeOut
+fun ConstraintLayout.fadeOutAnimation(visibility: Int, duration:Long = 700){
     try {
         val cl = this
         YoYo.with(Techniques.FadeOut)
-                .duration(400)
+                .duration(duration)
                 .onEnd {
                     cl.visibility = visibility
                 }
@@ -181,11 +240,11 @@ fun ConstraintLayout.fadeOutAnimation(visibility: Int){
     }
 }
 
-fun TextView.fadeOutAnimation(visibility: Int){
+fun TextView.fadeOutAnimation(visibility: Int, duration:Long = 700){
     try {
         val txtView = this
         YoYo.with(Techniques.FadeOut)
-                .duration(400)
+                .duration(duration)
                 .onEnd {
                     txtView.visibility = visibility
                 }
@@ -194,11 +253,11 @@ fun TextView.fadeOutAnimation(visibility: Int){
     }
 }
 
-fun EditText.fadeOutAnimation(visibility: Int){
+fun EditText.fadeOutAnimation(visibility: Int, duration:Long = 700){
     try {
         val edtTxt = this
         YoYo.with(Techniques.FadeOut)
-                .duration(400)
+                .duration(duration)
                 .onEnd {
                     edtTxt.visibility = visibility
                 }
@@ -207,11 +266,11 @@ fun EditText.fadeOutAnimation(visibility: Int){
     }
 }
 
-fun Button.fadeOutAnimation(visibility: Int){
+fun Button.fadeOutAnimation(visibility: Int, duration:Long = 700){
     try {
         val btn = this
         YoYo.with(Techniques.FadeOut)
-                .duration(400)
+                .duration(duration)
                 .onEnd {
                     btn.visibility = visibility
                 }
@@ -219,3 +278,4 @@ fun Button.fadeOutAnimation(visibility: Int){
     } catch (e: Exception) {
     }
 }
+//endregion

@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.victoorpereira'
+
 android {
     compileSdkVersion 27
 
@@ -35,4 +38,8 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+}
+
+repositories {
+    mavenCentral()
 }

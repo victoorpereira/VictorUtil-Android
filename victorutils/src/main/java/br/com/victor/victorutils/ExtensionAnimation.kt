@@ -1,14 +1,29 @@
 package br.com.victor.victorutils
 
+import android.media.Image
 import android.support.constraint.ConstraintLayout
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 
 //region Slide Left
+fun ImageView.slideLeftAnimation(duration:Long = 700){
+    try {
+        val imgView = this
+        YoYo.with(Techniques.SlideInLeft)
+                .duration(duration)
+                .onStart {
+                    imgView.visibility = View.VISIBLE
+                }
+                .playOn(imgView)
+    } catch (e: Exception) {
+    }
+}
+
 fun ConstraintLayout.slideLeftAnimation(duration:Long = 700){
     try {
         val cl = this
@@ -63,6 +78,19 @@ fun Button.slideLeftAnimation(duration:Long = 700){
 //endregion
 
 //region Slide Right
+fun ImageView.slideRightAnimation(duration:Long = 700){
+    try {
+        val imgView = this
+        YoYo.with(Techniques.SlideInRight)
+                .duration(duration)
+                .onStart {
+                    imgView.visibility = View.VISIBLE
+                }
+                .playOn(imgView)
+    } catch (e: Exception) {
+    }
+}
+
 fun ConstraintLayout.slideRightAnimation(duration:Long = 700){
     try {
         val cl = this
@@ -117,6 +145,19 @@ fun Button.slideRightAnimation(duration:Long = 700){
 //endregion
 
 //region Landing
+fun ImageView.landingAnimation(duration:Long = 700){
+    try {
+        val imgView = this
+        YoYo.with(Techniques.Landing)
+                .duration(duration)
+                .onStart {
+                    imgView.visibility = View.VISIBLE
+                }
+                .playOn(imgView)
+    } catch (e: Exception) {
+    }
+}
+
 fun ConstraintLayout.landingAnimation(duration:Long = 700){
     try {
         val cl = this
@@ -172,6 +213,19 @@ fun Button.landingAnimation(duration:Long = 700){
 //endregion
 
 //region FadeIn
+fun ImageView.fadeInAnimation(duration:Long = 700){
+    try {
+        val imgView = this
+        YoYo.with(Techniques.FadeIn)
+                .duration(duration)
+                .onStart {
+                    imgView.visibility = View.VISIBLE
+                }
+                .playOn(imgView)
+    } catch (e: Exception) {
+    }
+}
+
 fun ConstraintLayout.fadeInAnimation(duration:Long = 700){
     try {
         val cl = this
@@ -227,6 +281,19 @@ fun Button.fadeInAnimation(duration:Long = 700){
 //endregion
 
 //region FadeOut
+fun ImageView.fadeOutAnimation(visibility: Int, duration:Long = 700){
+    try {
+        val imgView = this
+        YoYo.with(Techniques.FadeOut)
+                .duration(duration)
+                .onEnd {
+                    imgView.visibility = visibility
+                }
+                .playOn(imgView)
+    } catch (e: Exception) {
+    }
+}
+
 fun ConstraintLayout.fadeOutAnimation(visibility: Int, duration:Long = 700){
     try {
         val cl = this

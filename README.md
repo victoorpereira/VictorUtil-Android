@@ -24,7 +24,7 @@ Add the dependency
 
 ```
 dependencies {
-    implementation 'com.github.victoorpereira:VictorUtil-Android:1.0.6'
+    implementation 'com.github.victoorpereira:VictorUtil-Android:1.0.7'
 }
 ```
 
